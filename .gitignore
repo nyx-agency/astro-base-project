@@ -1,0 +1,25 @@
+# build output
+dist/
+
+# generated types
+.astro/
+
+# dependencies
+node_modules/
+
+# logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# macOS-specific files
+.DS_Store
+
+# ignore env
+project.env
+project.test.env
+
+# ignore env
+# regex if file end with with .env
+*.env

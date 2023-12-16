@@ -1,0 +1,29 @@
+{
+  "name": "web",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro",
+    "reinstall": "rm -rf node_modules && npm install",
+    "npm:install": "rm -rf node_modules && rm -rf dist && npm cache clean --force && npm install",
+    "npm:reinstall": "rm -rf node_modules && rm -rf dist && rm -f package-lock.json && npm cache clean --force && npm install"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.3.1",
+    "astro": "^4.0.3",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "@typescript-eslint/eslint-plugin": "^6.13.2",
+    "@typescript-eslint/parser": "^6.13.2",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-prettier": "^5.0.1",
+    "eslint": "^8.55.0",
+    "prettier-plugin-astro": "^0.12.2",
+    "prettier": "^3.1.1"
+  }
+}
