@@ -1,19 +1,21 @@
-<!-- Path: web/src/components/DarkModeToggle.svelte -->
 <script>
-import { styles, toggleMode, setMode } from '../stores/styles';
+import { styles, toggleMode } from '../stores/styles';
+import { onDestroy } from 'svelte';
 
-// Utilizar el store de forma reactiva
-$: isDarkMode = $styles.mode;
+let isDarkMode;
 
-// Establecer el modo oscuro basado en el almacenamiento local al cargar
-$: {
-    if (typeof window !== 'undefined') {
-        const modoInicial = localStorage.getItem("darkMode") === "true" ? "dark" : "light";
-        setMode(modoInicial);
-    }
-}
+// Suscribirse al store y actualizar isDarkMode
+const unsubscribe = styles.subscribe($styles => {
+    console.log('styles', $styles)
+    isDarkMode = $styles.isDarkMode;
+});
+
+// Limpiar la suscripción al destruir el componente
+onDestroy(unsubscribe);
 </script>
 
+<button on:click={toggleMode} class="i-carbon-sun dark:i-carbon-moon" />
+
 <button on:click={toggleMode}>
-    {isDarkMode ? 'Modo Claro' : 'Modo Oscuro'}
+    {$styles.isDarkMode ? 'Modo oscuro' : 'Modo claro'}
 </button>
