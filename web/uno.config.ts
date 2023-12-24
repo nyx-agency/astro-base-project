@@ -2,11 +2,14 @@
 
 import { defineConfig } from "unocss";
 import { presetMini } from "unocss";
+import { presetTypography } from "unocss";
+import { presetAttributify } from "unocss";
+import { presetIcons } from "unocss";
 import presetUno from "@unocss/preset-uno";
-import presetIcons from "@unocss/preset-icons";
 
 export default defineConfig({
   presets: [
+    presetAttributify(),
     presetUno(),
     presetMini({
       dark: "class",
@@ -61,6 +64,9 @@ export default defineConfig({
           return props;
         },
       },
+    }),
+    presetTypography({
+      selectorName: "nyx-typography",
     }),
   ],
 });
