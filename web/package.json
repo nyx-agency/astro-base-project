@@ -13,17 +13,30 @@
     "npm:reinstall": "rm -rf node_modules && rm -rf dist && rm -f package-lock.json && npm cache clean --force && npm install"
   },
   "dependencies": {
-    "@astrojs/check": "^0.3.1",
-    "astro": "^4.0.3",
+    "@astrojs/check": "^0.3.4",
+    "@astrojs/svelte": "^5.0.2",
+    "astro": "^4.0.7",
+    "svelte": "^4.2.8",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^6.13.2",
-    "@typescript-eslint/parser": "^6.13.2",
+    "@iconify-json/carbon": "^1.1.27",
+    "@iconify-json/clarity": "^1.1.12",
+    "@iconify-json/emojione": "^1.1.10",
+    "@iconify-json/logos": "^1.1.41",
+    "@iconify-json/material-symbols": "^1.1.68",
+    "@iconify-json/mdi": "^1.1.63",
+    "@iconify-json/mdi-light": "^1.1.10",
+    "@iconify-json/ph": "^1.1.9",
+    "@iconify-json/twemoji": "^1.1.15",
+    "@typescript-eslint/eslint-plugin": "^6.15.0",
+    "@typescript-eslint/parser": "^6.15.0",
+    "@unocss/preset-uno": "^0.58.0",
+    "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
-    "eslint-plugin-prettier": "^5.0.1",
-    "eslint": "^8.55.0",
+    "eslint-plugin-prettier": "^5.1.2",
+    "prettier": "^3.1.1",
     "prettier-plugin-astro": "^0.12.2",
-    "prettier": "^3.1.1"
+    "unocss": "^0.58.0"
   }
 }

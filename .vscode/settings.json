@@ -9,7 +9,11 @@
   "eslint.alwaysShowStatus": true,
   "cSpell.words": [
     "astrojs",
+    "Attributify",
     "bunx",
-    "hono"
+    "emojione",
+    "hono",
+    "iconify",
+    "unocss"
   ]
 }
