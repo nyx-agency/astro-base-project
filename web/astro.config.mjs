@@ -7,11 +7,11 @@ import svelte from "@astrojs/svelte";
 
 // https://astro.build/config
 export default defineConfig({
-  output: "server",
+  // output: "hybrid",
   vite: {},
   server: {
     port: 3210,
-    host: true
+    host: true,
   },
-  integrations: [UnoCSS(), svelte()]
+  integrations: [UnoCSS(), svelte()],
 });

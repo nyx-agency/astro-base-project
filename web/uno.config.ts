@@ -5,12 +5,13 @@ import { presetMini } from "unocss";
 import { presetTypography } from "unocss";
 import { presetAttributify } from "unocss";
 import { presetIcons } from "unocss";
+import { presetWebFonts } from "unocss";
 import presetUno from "@unocss/preset-uno";
 
 export default defineConfig({
   presets: [
-    presetAttributify(),
-    presetUno(),
+    presetAttributify({}),
+    presetUno({}),
     presetMini({
       dark: "class",
       theme: {
@@ -57,16 +58,33 @@ export default defineConfig({
         emojione: () =>
           import("@iconify-json/emojione/icons.json").then((i) => i.default),
       },
-      customizations: {
-        customize(props) {
-          props.width = "20em";
-          props.height = "20em";
-          return props;
-        },
+      extraProperties: {
+        display: "inline-block",
+        "vertical-align": "middle",
       },
     }),
     presetTypography({
       selectorName: "nyx-typography",
+    }),
+    presetWebFonts({
+      // provider: "google",
+      fonts: {
+        sans: "Noto Sans",
+        "racing-sans-one": [
+          {
+            name: "Racing Sans One",
+            weights: ["400", "600", "700", "800"],
+            italic: true,
+          },
+        ],
+        "noto-sans": [
+          {
+            name: "Noto Sans",
+            weights: ["400", "600", "700", "800"],
+            italic: true,
+          },
+        ],
+      },
     }),
   ],
 });
