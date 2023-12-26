@@ -1,6 +1,8 @@
 // Path: web/src/presets/typography.ts
 
-import { type PresetOptions, definePreset } from "unocss";
+import { definePreset } from "unocss";
+import type { PresetParams } from "@/types/preset";
+
 import type {
   FontFamilyClass,
   FontSizeClass,
@@ -132,10 +134,6 @@ const fontsLetterSpacings: LetterSpacingClass = {
   },
 };
 
-interface PresetParams {
-  selectorName?: string;
-  options?: PresetOptions;
-}
 
 // https://unocss.dev/config/presets#presets
 export default definePreset((params?: PresetParams) => {
