@@ -5,9 +5,19 @@ import Layout from '../layouts/Layout.astro';
 import DarkModeToggle from '../components/DarkModeToggle.svelte';
 ---
 
-<Layout title="Welcome to Astro.">
+<Layout>
 	<main>
 		<DarkModeToggle client:visible />
+		<div
+			class="nyx-text nyx-text-font-racing-sans-one"
+		>
+			Free trial session with a trainer
+		</div>
+		<div
+			class="nyx-text-lh-title"
+		>
+			Test Title
+		</div>
 		<div class="i-mdi-alarm hover:text-orange-400" />
 		<div class="i-mdi-alarm nyx-typography nyx-typography-truegray hover:text-orange-400 hover:text-sm" />
 
@@ -22,24 +32,4 @@ import DarkModeToggle from '../components/DarkModeToggle.svelte';
 
 <style is:global>
 
-	body {
-		font-family: 'Noto Sans', sans-serif;
-		font-size: 19.2px;
-		font-style: normal;
-		font-weight: 400;
-		line-height: 26px;
-		letter-spacing: -0.768px;
-		color: white;
-	}
-	.racing-sans {
-		font-family: 'Racing Sans One', sans-serif;
-		font-weight: 400;
-		font-style: normal;
-	}
-
-	.noto-sans {
-		font-family: 'Noto Sans', sans-serif;
-		font-weight: 400;
-		font-style: normal;
-	}
 </style>

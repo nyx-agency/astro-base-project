@@ -8,6 +8,8 @@ import { presetIcons } from "unocss";
 import { presetWebFonts } from "unocss";
 import presetUno from "@unocss/preset-uno";
 
+import { typography } from "./src/presets";
+
 export default defineConfig({
   presets: [
     presetAttributify({}),
@@ -64,7 +66,7 @@ export default defineConfig({
       },
     }),
     presetTypography({
-      selectorName: "nyx-typography",
+      selectorName: "typography",
     }),
     presetWebFonts({
       // provider: "google",
@@ -84,6 +86,12 @@ export default defineConfig({
             italic: true,
           },
         ],
+      },
+    }),
+    typography({
+      selectorName: "nyx-text",
+      options: {
+        test: "test",
       },
     }),
   ],
