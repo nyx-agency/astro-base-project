@@ -66,7 +66,7 @@ export default defineConfig({
       },
     }),
     presetTypography({
-      selectorName: "nyx-typography",
+      selectorName: "typography",
     }),
     presetWebFonts({
       // provider: "google",
@@ -89,7 +89,10 @@ export default defineConfig({
       },
     }),
     typography({
-      selectorName: "nyx-typography",
+      selectorName: "nyx-text",
+      options: {
+        test: "test",
+      },
     }),
   ],
 });
