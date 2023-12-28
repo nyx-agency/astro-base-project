@@ -1,15 +1,6 @@
 // Path: web/src/presets/typography.ts
 
 import { definePreset } from "unocss";
-import type { PresetParams } from "@/types/preset";
-
-import type {
-  FontFamilyClass,
-  FontSizeClass,
-  FontWeightClass,
-  LineHeightClass,
-  LetterSpacingClass,
-} from "@/types/typography";
 
 const fontsFamilies: FontFamilyClass = {
   "racing-sans-one": {

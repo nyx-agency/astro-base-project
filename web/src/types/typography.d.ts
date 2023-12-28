@@ -1,9 +1,9 @@
 // Path: web/src/types/typography.ts
 
 
-export type FontFamilyTypes = "racing-sans-one" | "noto-sans";
+type FontFamilyTypes = "racing-sans-one" | "noto-sans";
 
-export type FontFamilyClass = Record<
+type FontFamilyClass = Record<
   FontFamilyTypes,
   {
     "font-family": string;
@@ -11,7 +11,7 @@ export type FontFamilyClass = Record<
 >;
 
 // Define un tipo para los tamaños de fuente
-export type FontSizeTypes =
+type FontSizeTypes =
   | "title-big"
   | "h1"
   | "h2"
@@ -23,7 +23,7 @@ export type FontSizeTypes =
   | "caption"
   | "overline";
 
-export type FontSizeClass = Record<
+type FontSizeClass = Record<
   FontSizeTypes,
   {
     "font-size": string;
@@ -31,9 +31,9 @@ export type FontSizeClass = Record<
 >;
 
 // Define un tipo para los pesos de fuente
-export type FontWeightTypes = "regular" | "semibold" | "bold" | "black";
+type FontWeightTypes = "regular" | "semibold" | "bold" | "black";
 
-export type FontWeightClass = Record<
+type FontWeightClass = Record<
   FontWeightTypes,
   {
     "font-weight": string;
@@ -41,7 +41,7 @@ export type FontWeightClass = Record<
 >;
 
 // Define un tipo para las alturas de línea
-export type LineHeightTypes =
+type LineHeightTypes =
   | "title"
   | "h1"
   | "h2"
@@ -53,7 +53,7 @@ export type LineHeightTypes =
   | "caption"
   | "overline";
 
-export type LineHeightClass = Record<
+type LineHeightClass = Record<
   LineHeightTypes,
   {
     "line-height": string;
@@ -61,7 +61,7 @@ export type LineHeightClass = Record<
 >;
 
 // Define un tipo para los espacios entre letras
-export type LetterSpacingTypes =
+type LetterSpacingTypes =
   | "title"
   | "h1"
   | "h2"
@@ -73,7 +73,7 @@ export type LetterSpacingTypes =
   | "caption"
   | "overline";
 
-export type LetterSpacingClass = Record<
+type LetterSpacingClass = Record<
   LetterSpacingTypes,
   {
     "letter-spacing": string;

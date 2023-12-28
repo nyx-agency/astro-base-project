@@ -5,17 +5,40 @@ import { writable, get } from "svelte/store";
 const getInitial = () => {
   if (typeof window !== "undefined") {
     const styles = localStorage.getItem("styles");
-    let stylesObj: any = {};
+    const isDarkMode =
+      window.matchMedia &&
+      window.matchMedia("(prefers-color-scheme: dark)").matches
+        ? true
+        : false;
+    console.log(
+      "web/src/stores/styles.ts -> getInitial -> isDarkMode",
+      isDarkMode
+    );
+    let stylesObj: any = {
+      isDarkMode,
+    };
     try {
-      stylesObj = JSON.parse(styles) || {};
+      stylesObj = JSON.parse(styles) || {
+        isDarkMode,
+      };
+
+      if (stylesObj.isDarkMode) {
+        document.documentElement.classList.add("dark");
+      }
     } catch (e) {
-        stylesObj = {};
+      stylesObj = {
+        isDarkMode,
+      };
     }
-    window.console.log("web/src/stores/styles.ts -> getInitialMode -> stylesObj", stylesObj)
-    return stylesObj
+    window.console.log(
+      "web/src/stores/styles.ts -> getInitialMode -> stylesObj",
+      stylesObj
+    );
+
+    return stylesObj;
   }
   return {};
-}
+};
 
 export const styles = writable({
   ...getInitial(),
@@ -45,6 +68,10 @@ export const toggleMode = () => {
     );
     if (typeof window !== "undefined") {
       document.documentElement.classList.toggle("dark", isDarkMode);
+      document.documentElement.style.setProperty(
+        "--theme-mode",
+        isDarkMode ? "dark" : "light"
+      );
       setValueLocalStorage("isDarkMode", isDarkMode);
     }
     return s;

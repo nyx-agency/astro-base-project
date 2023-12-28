@@ -9,8 +9,13 @@ import DarkModeToggle from '../components/DarkModeToggle.svelte';
 	<main>
 		<DarkModeToggle client:visible />
 		<div
-			class="nyx-text-font-racing-sans-one nyx-color-c-t-green-primary"
+			class="nyx-text-font-racing-sans-one nyx-color-text-primary-base dark:nyx-color-text-primary-base"
 		>
+			<span
+				class="i-carbon-sun dark:i-carbon-moon"
+				aria-hidden="true"
+			/>
+
 			Free trial session with a trainer
 		</div>
 		<div
