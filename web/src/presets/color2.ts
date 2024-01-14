@@ -448,7 +448,7 @@ const colors: ListColor = {
 
 const lightPalette: ColorPalette = {
   primary: {
-    base: colors["light-green"].base, // Color primario base
+    base: "#FFD600", // Color primario base
     on: colors["light-green"].darken["1"], // Color sobre primario
     container: colors["light-green"].lighten["5"], // Contenedor primario
     onContainer: colors["light-green"].base, // Color sobre contenedor primario
@@ -471,7 +471,7 @@ const lightPalette: ColorPalette = {
 
 const darkPalette: ColorPalette = {
   primary: {
-    base: colors["light-green"].base,
+    base: "#FF0080", // Color primario base
     on: colors["light-green"].lighten["1"],
     container: colors["light-green"].darken["4"],
     onContainer: colors["light-green"].lighten["5"],
@@ -497,77 +497,24 @@ const themes = {
   dark: darkPalette,
 };
 
-const getColorValue = (palette: ColorPalette, colorKey: string): string | false => {
-  try {
-    const keys = colorKey.split('-');
-    let value: any = palette;
-    
-    for (const key of keys) {
-      value = value?.[key];
-      if (value === undefined) {
-        throw new Error(`Key not found: ${colorKey}`);
-      }
-    }
-  
-    return value;
-  } catch (error) {
-    console.error(error);
-    return false;
-  }
-};
-
 // https://unocss.dev/config/presets#presets
 export default definePreset((params?: PresetParams) => {
-  console.log("src/presets/color.ts -> definePreset -> params", params);
-
-  const { selectorName = "nyx-color", options = {} } = params || {};
+  const { selectorName = "nyx-color2", options = {} } = params || {};
 
   return {
-    name: "nyx-color",
+    name: selectorName,
     rules: [
-      // [
-      //   new RegExp(`^${selectorName}-(\\w+)-(.+)$`),
-      //   (params) => {
-      //     const [, group, colorKey] = params;
-      //     console.log("LIGHT");
-      //     console.log("src/presets/color.ts -> params", params);
-
-      //     const groups = {
-      //       bg: "background-color",
-      //       color: "color",
-      //       border: "border-color",
-      //       fill: "fill",
-      //       stroke: "stroke",
-      //     };
-      //     const groupObtained = groups[group as keyof typeof groups];
-      //     if (!groupObtained) {
-      //       return {};
-      //     }
-
-      //     const colorValue = getColorValue(themes.light, colorKey);
-      //     if (!colorValue) {
-      //       return {};
-      //     }
-
-      //     return {
-      //       [groupObtained]: colorValue,
-      //     };
-      //   },
-      // ],
       [
-        new RegExp(`^dark:${selectorName}-(\\w+)-(.+)$`),
+        new RegExp(`^${selectorName}-(\\w+)-(\\w+)-(\\w+)$`),
+        // example: text-primary-base
         (params) => {
-          const [, group, colorKey] = params;
-          console.log("DARK");
-          console.log("src/presets/color.ts -> params", params);
-
-          return {
-            color: "red",
-          }
+          console.log("src/presets/color2.ts -> LIGHT");
+          // console.log("params", params);
+          const [, group, colorGroup, colorKey] = params;
 
           const groups = {
             bg: "background-color",
-            color: "color",
+            text: "color",
             border: "border-color",
             fill: "fill",
             stroke: "stroke",
@@ -576,18 +523,39 @@ export default definePreset((params?: PresetParams) => {
           if (!groupObtained) {
             return {};
           }
+          // console.log("params", {
+          //   colorGroup,
+          //   colorKey,
+          // });
 
-          const colorValue = getColorValue(themes.dark, colorKey);
-          if (!colorValue) {
+          // console.log("themes.light", themes.light);
+          const colorGroupObtained =
+            themes.light[colorGroup as keyof typeof themes.light];
+          if (!colorGroupObtained) {
+            return {};
+          }
+
+          // console.log("colorGroupObtained", colorGroupObtained);
+          const colorKeyObtained =
+            colorGroupObtained[colorKey as keyof typeof colorGroupObtained];
+          if (!colorKeyObtained) {
             return {};
           }
 
           return {
-            [groupObtained]: colorValue,
+            [groupObtained]: colorKeyObtained,
           };
         },
       ],
     ],
-    variants: [],
+    variants: [
+      // Variante para tema dark
+      (matcher, util) => {
+        if (matcher.startsWith("dark:")) {
+          console.log("src/presets/color2.ts -> DARK");
+          return util.generate(matcher.replace("dark:", ""), `html.dark &`);
+        }
+      },
+    ],
   };
 });
