@@ -96,15 +96,11 @@ export default defineConfig({
     }),
     color1({
       selectorName: "nyx-color1",
-      options: {
-        test: "test",
-      },
+      options: {},
     }),
     color2({
       selectorName: "nyx-color2",
-      options: {
-        test: "test",
-      },
+      options: {},
     }),
   ],
 });

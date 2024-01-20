@@ -1,0 +1,20 @@
+#!/usr/bin/env sh
+. "$(dirname -- "$0")/_/husky.sh"
+
+# Definir la versión de Node deseada
+NODE_VERSION="20"
+
+# Cargar nvm
+. ~/.nvm/nvm.sh
+
+# Verificar si la versión deseada de Node está instalada, de no estarlo, instalarla
+if [ -z "$(nvm ls $NODE_VERSION --no-colors | grep v$NODE_VERSION)" ]; then
+  echo "Instalando Node $NODE_VERSION..."
+  nvm install $NODE_VERSION
+fi
+
+# Usar la versión deseada de Node
+nvm use $NODE_VERSION
+
+# Ejecutar lint-staged
+npx lint-staged

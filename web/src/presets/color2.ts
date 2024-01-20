@@ -505,57 +505,25 @@ export default definePreset((params?: PresetParams) => {
     name: selectorName,
     rules: [
       [
-        new RegExp(`^${selectorName}-(\\w+)-(\\w+)-(\\w+)$`),
-        // example: text-primary-base
-        (params) => {
-          console.log("src/presets/color2.ts -> LIGHT");
-          // console.log("params", params);
-          const [, group, colorGroup, colorKey] = params;
-
-          const groups = {
-            bg: "background-color",
-            text: "color",
-            border: "border-color",
-            fill: "fill",
-            stroke: "stroke",
-          };
-          const groupObtained = groups[group as keyof typeof groups];
-          if (!groupObtained) {
-            return {};
-          }
-          // console.log("params", {
-          //   colorGroup,
-          //   colorKey,
-          // });
-
-          // console.log("themes.light", themes.light);
-          const colorGroupObtained =
-            themes.light[colorGroup as keyof typeof themes.light];
-          if (!colorGroupObtained) {
-            return {};
-          }
-
-          // console.log("colorGroupObtained", colorGroupObtained);
-          const colorKeyObtained =
-            colorGroupObtained[colorKey as keyof typeof colorGroupObtained];
-          if (!colorKeyObtained) {
-            return {};
-          }
-
+        new RegExp(`^${selectorName}-(.+)$`), // example: nyx-color2-text-primary-base
+        () => {
+          console.log("not dark");
           return {
-            [groupObtained]: colorKeyObtained,
+            color: "red",
           };
         },
+        { parent: ":not(.dark)" },
       ],
-    ],
-    variants: [
-      // Variante para tema dark
-      (matcher, util) => {
-        if (matcher.startsWith("dark:")) {
-          console.log("src/presets/color2.ts -> DARK");
-          return util.generate(matcher.replace("dark:", ""), `html.dark &`);
-        }
-      },
+      [
+        new RegExp(`^${selectorName}-(.+)$`), // example: nyx-color2-text-primary-base
+        () => {
+          console.log("dark");
+          return {
+            color: "blue",
+          };
+        },
+        { parent: ".dark" },
+      ],
     ],
   };
 });
