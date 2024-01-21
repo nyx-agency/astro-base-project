@@ -507,23 +507,23 @@ export default definePreset((params?: PresetParams) => {
       [
         new RegExp(`^${selectorName}-(.+)$`), // example: nyx-color2-text-primary-base
         () => {
-          console.log("not dark");
+          console.log('not dark')
           return {
-            color: "red",
-          };
+            color: 'red',
+          }
         },
-        { parent: ":not(.dark)" },
+        { parent: ':not(.dark)' },
       ],
       [
         new RegExp(`^${selectorName}-(.+)$`), // example: nyx-color2-text-primary-base
         () => {
-          console.log("dark");
+          console.log('dark')
           return {
-            color: "blue",
-          };
+            color: 'blue',
+          }
         },
-        { parent: ".dark" },
+        { parent: '.dark' },
       ],
     ],
-  };
+  }
 });
