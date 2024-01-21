@@ -493,37 +493,46 @@ const darkPalette: ColorPalette = {
 };
 
 const themes = {
-  light: lightPalette,
-  dark: darkPalette,
-};
+  light: {
+    alias: '',
+    palette: lightPalette,
+  },
+  dark: {
+    alias: 'dark',
+    palette: darkPalette,
+  },
+}
 
 // https://unocss.dev/config/presets#presets
 export default definePreset((params?: PresetParams) => {
-  const { selectorName = "nyx-color2", options = {} } = params || {};
+  const { selectorName = 'nyx-color2', options = {} } = params || {}
 
   return {
     name: selectorName,
+    // https://unocss.dev/config/shortcuts
+    shortcuts: [
+      [
+        new RegExp(`^${selectorName}-(.+)$`),
+        ([, colorName]) => {
+          console.log('shortcuts mode', colorName)
+          return `c-${selectorName}-light-${colorName} dark:c-${selectorName}-dark-${colorName}`
+        },
+      ],
+    ],
     rules: [
       [
-        new RegExp(`^${selectorName}-(.+)$`), // example: nyx-color2-text-primary-base
-        () => {
-          console.log('not dark')
+        new RegExp(`^c-${selectorName}-(.+)$`),
+        ([params, colorName]) => {
+          const splitParams = colorName.split('-')
+          const mode = splitParams[0]
+          console.log('rules -> splitParams', splitParams)
+
           return {
-            color: 'red',
+            color: mode === 'light' ? 'blue' : 'red',
+            // color: 'blue',
           }
         },
-        { parent: ':not(.dark)' },
-      ],
-      [
-        new RegExp(`^${selectorName}-(.+)$`), // example: nyx-color2-text-primary-base
-        () => {
-          console.log('dark')
-          return {
-            color: 'blue',
-          }
-        },
-        { parent: '.dark' },
       ],
     ],
   }
-});
+})

@@ -67,11 +67,7 @@ export const toggleMode = () => {
       isDarkMode
     );
     if (typeof window !== "undefined") {
-      document.documentElement.classList.toggle("dark", isDarkMode);
-      document.documentElement.style.setProperty(
-        "--theme-mode",
-        isDarkMode ? "dark" : "light"
-      );
+      document.documentElement.classList.toggle('dark', isDarkMode)
       setValueLocalStorage("isDarkMode", isDarkMode);
     }
     return s;
