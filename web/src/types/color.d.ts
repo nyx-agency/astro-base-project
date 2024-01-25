@@ -75,11 +75,10 @@ type Surface = { base: string; on: string };
 
 // Tipo para la paleta completa
 interface ColorPalette {
-  primary: PrimaryColor;
-  secondary: SecondaryColor;
-  tertiary: TertiaryColor;
-  error: ErrorColor;
-  background: Background;
-  surface: Surface;
-  // ... otros colores como outline, scrim, shadow, etc.
+  primary: PrimaryColor
+  secondary: SecondaryColor
+  tertiary: TertiaryColor
+  error: ErrorColor
+  background: Background
+  surface: Surface
 }

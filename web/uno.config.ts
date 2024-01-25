@@ -8,7 +8,8 @@ import { presetIcons } from "unocss";
 import { presetWebFonts } from "unocss";
 import presetUno from "@unocss/preset-uno";
 
-import { typography, color1, color2 } from "./src/presets";
+import { typography, color } from './src/presets'
+import { themes } from './src/presets/colors'
 
 export default defineConfig({
   presets: [
@@ -74,13 +75,11 @@ export default defineConfig({
         test: 'test',
       },
     }),
-    color1({
-      selectorName: 'nyx-color1',
-      options: {},
-    }),
-    color2({
+    color({
       selectorName: 'nyx-color2',
-      options: {},
+      options: {
+        themes,
+      },
     }),
   ],
 })
