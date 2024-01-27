@@ -75,7 +75,7 @@ export default definePreset((params?: PresetParams) => {
 
   return {
     name: selectorName,
-    // https://unocss.dev/config/shortcuts
+    // Ajuste de los shortcuts
     shortcuts: [
       [
         new RegExp(`^${selectorName}-(${listTypesRegex})-(.+)$`),
@@ -86,42 +86,34 @@ export default definePreset((params?: PresetParams) => {
           }
 
           const availableThemes = getAvailableThemesForColor(colorName, themes)
-
           if (availableThemes.length === 0) {
             console.warn(`Color '${colorName}' not found in any theme.`)
             return ''
           }
 
-          const classes = availableThemes.map((theme) => {
-            const alias = themes[theme].alias
-            return `${alias ? alias + ':' : ''}${selectorName}-v-${type}-${colorName}-${theme}`
-          })
-
-          console.log('shortcuts -> classes ->', classes)
-
-          return classes.join(' ')
+          return availableThemes
+            .map((theme) => {
+              const alias = themes[theme].alias || theme
+              return `${alias}:${selectorName}-v-${type}-${colorName}`
+            })
+            .join(' ')
         },
       ],
     ],
+    // Ajuste de las reglas
     rules: [
       [
         new RegExp(`^${selectorName}-v-(${listTypesRegex})-(.+)-(.+)$`),
-        ([, type, colorName, mode]) => {
-          console.log('rules ->', type, colorName, mode)
-
+        ([, type, colorName, theme]) => {
           const typeAlias = typeAliases[type]
           if (!typeAlias) {
             return {}
           }
 
-          const theme = themes[mode]
-          if (!theme) {
+          const color = getColorFromThemes(colorName, themes, theme)
+          if (!color) {
             return {}
           }
-
-          const color = getColorFromThemes(colorName, themes, mode)
-
-          console.log('color ->', color)
 
           return {
             [typeAlias]: color,
