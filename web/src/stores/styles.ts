@@ -30,10 +30,6 @@ const getInitial = () => {
         isDarkMode,
       }
     }
-    window.console.log(
-      'web/src/stores/styles.ts -> getInitialMode -> stylesObj',
-      stylesObj
-    )
 
     return stylesObj
   }
@@ -63,12 +59,6 @@ export const toggleMode = () => {
     const isDarkMode = !s.isDarkMode
     s.isDarkMode = isDarkMode
     if (typeof window !== 'undefined') {
-      // document.body.classList.toggle('dark', isDarkMode);
-      document.documentElement.style.setProperty(
-        '--theme-mode',
-        isDarkMode ? 'black' : 'green'
-      )
-
       if (isDarkMode) {
         document.body.classList.add('black')
         document.body.classList.remove('green')

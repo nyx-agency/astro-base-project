@@ -75,7 +75,6 @@ export default definePreset((params?: PresetParams) => {
 
   return {
     name: selectorName,
-    // Ajuste de los shortcuts
     shortcuts: [
       [
         new RegExp(`^${selectorName}-(${listTypesRegex})-(.+)$`),
@@ -100,7 +99,6 @@ export default definePreset((params?: PresetParams) => {
         },
       ],
     ],
-    // Ajuste de las reglas
     rules: [
       [
         new RegExp(`^${selectorName}-v-(${listTypesRegex})-(.+)-(.+)$`),
