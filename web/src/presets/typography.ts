@@ -128,15 +128,13 @@ const fontsLetterSpacings: LetterSpacingClass = {
 
 // https://unocss.dev/config/presets#presets
 export default definePreset((params?: PresetParams) => {
-  console.log("src/presets/typography.ts -> definePreset -> params", params);
-
-  const { selectorName = "nyx-text", options = {} } = params || {};
+  const { selectorName = 'nyx-text', options = {} } = params || {}
 
   return {
-    name: "nyx-typography",
+    name: 'nyx-typography',
     preflights: [
       {
-        layer: "variables",
+        layer: 'variables',
         getCSS: () => `
           body {
             font-family:
@@ -165,27 +163,27 @@ export default definePreset((params?: PresetParams) => {
             w: fontsWeights,
             lh: fontsLineHeights,
             ls: fontsLetterSpacings,
-          };
+          }
 
-          const groupClass = groups[group as keyof typeof groups];
+          const groupClass = groups[group as keyof typeof groups]
           if (!groupClass) {
-            return {};
+            return {}
           }
 
-          const styles = groupClass[name as keyof typeof groupClass];
+          const styles = groupClass[name as keyof typeof groupClass]
           if (!styles) {
-            return {};
+            return {}
           }
 
-          return styles;
+          return styles
         },
       ],
     ],
     variants: [
       // ...
     ],
-  };
-});
+  }
+})
 
 /**
  *

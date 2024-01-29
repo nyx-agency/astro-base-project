@@ -489,12 +489,6 @@ const darkPalette: ColorPalette = {
 }
 
 export const themes = {
-  green: {
-    alias: 'green',
-    palette: lightPalette,
-  },
-  black: {
-    alias: 'black',
-    palette: darkPalette,
-  },
+  light: lightPalette,
+  dark: darkPalette,
 }

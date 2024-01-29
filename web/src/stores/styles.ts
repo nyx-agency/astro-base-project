@@ -1,7 +1,6 @@
 // Path: web/src/stores/styles.ts
 import { writable, get } from "svelte/store";
 
-// Función para obtener el modo inicial desde localStorage
 const getInitial = () => {
   if (typeof window !== 'undefined') {
     const styles = localStorage.getItem('styles')
@@ -11,24 +10,24 @@ const getInitial = () => {
     let stylesObj: any = {
       isDarkMode,
     }
-    try {
-      stylesObj = JSON.parse(styles) || {
-        isDarkMode,
+    if (styles) {
+      try {
+        stylesObj = JSON.parse(styles) || {
+          isDarkMode,
+        }
+      } catch (e) {
+        stylesObj = {
+          isDarkMode,
+        }
       }
+    }
 
-      if (stylesObj.isDarkMode) {
-        // document.body.classList.add('dark')
-        document.body.classList.add('black')
-        document.body.classList.remove('green')
-      } else {
-        // document.body.classList.remove('dark')
-        document.body.classList.remove('black')
-        document.body.classList.add('green')
-      }
-    } catch (e) {
-      stylesObj = {
-        isDarkMode,
-      }
+    if (stylesObj.isDarkMode) {
+      document.body.classList.add('dark')
+      document.body.classList.remove('light')
+    } else {
+      document.body.classList.remove('dark')
+      document.body.classList.add('light')
     }
 
     return stylesObj
@@ -44,10 +43,12 @@ const setValueLocalStorage = (key: string, value: any) => {
   if (typeof window !== 'undefined') {
     const styles = localStorage.getItem('styles')
     let stylesObj: any = {}
-    try {
-      stylesObj = JSON.parse(styles) || {}
-    } catch (e) {
-      stylesObj = {}
+    if (styles) {
+      try {
+        stylesObj = JSON.parse(styles) || {}
+      } catch (e) {
+        stylesObj = {}
+      }
     }
     stylesObj[key] = value
     localStorage.setItem('styles', JSON.stringify(stylesObj))
@@ -60,11 +61,11 @@ export const toggleMode = () => {
     s.isDarkMode = isDarkMode
     if (typeof window !== 'undefined') {
       if (isDarkMode) {
-        document.body.classList.add('black')
-        document.body.classList.remove('green')
+        document.body.classList.add('dark')
+        document.body.classList.remove('light')
       } else {
-        document.body.classList.remove('black')
-        document.body.classList.add('green')
+        document.body.classList.remove('dark')
+        document.body.classList.add('light')
       }
       setValueLocalStorage('isDarkMode', isDarkMode)
     }
@@ -76,11 +77,11 @@ export const setMode = (mode: boolean) => {
   styles.set({ ...get(styles), isDarkMode: mode })
   if (typeof window !== 'undefined') {
     if (mode) {
-      document.body.classList.add('black')
-      document.body.classList.remove('green')
+      document.body.classList.add('dark')
+      document.body.classList.remove('light')
     } else {
-      document.body.classList.remove('black')
-      document.body.classList.add('green')
+      document.body.classList.remove('dark')
+      document.body.classList.add('light')
     }
     setValueLocalStorage('isDarkMode', mode)
   }

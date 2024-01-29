@@ -1,10 +1,10 @@
 // Path: web/src/presets/color.ts
 
-import { definePreset } from "unocss";
+import { definePreset } from 'unocss'
 
 function getAvailableThemesForColor(
   colorName: string,
-  themes: Record<string, { alias: string; palette: ColorPalette }>
+  themes: Themes
 ): string[] {
   const [category, property] = colorName.split('-')
 
@@ -14,20 +14,19 @@ function getAvailableThemesForColor(
     property: string
   ): boolean => {
     const colorCategory = palette[category as keyof ColorPalette]
-    return (
-      colorCategory &&
-      colorCategory[property as keyof typeof colorCategory] !== undefined
-    )
+    return (colorCategory &&
+      colorCategory[property as keyof typeof colorCategory] !==
+        undefined) as boolean
   }
 
   return Object.keys(themes).filter((theme) =>
-    checkColor(themes[theme].palette, category, property)
+    checkColor(themes[theme], category, property)
   )
 }
 
 function getColorFromThemes(
   colorName: string,
-  themes: Record<string, { alias: string; palette: ColorPalette }>,
+  themes: Themes,
   mode: string
 ): string | undefined {
   const [category, property] = colorName.split('-')
@@ -38,7 +37,7 @@ function getColorFromThemes(
     return undefined
   }
 
-  const colorCategory = theme.palette[category as keyof ColorPalette]
+  const colorCategory = theme[category as keyof ColorPalette]
   if (!colorCategory) {
     console.warn(`Category '${category}' not found in theme '${mode}'.`)
     return undefined
@@ -56,7 +55,7 @@ function getColorFromThemes(
 }
 
 // https://unocss.dev/config/presets#presets
-export default definePreset((params?: PresetParams) => {
+export default definePreset((params: PresetParams) => {
   const { selectorName = 'nyx-color2', options = {} } = params || {}
 
   const { themes = {} } = options
@@ -65,7 +64,7 @@ export default definePreset((params?: PresetParams) => {
 
   const listTypesRegex = listTypes.join('|')
 
-  const typeAliases: Record<string, string> = {
+  const typeColors: Record<string, string> = {
     bg: 'background-color',
     text: 'color',
     border: 'border-color',
@@ -79,8 +78,8 @@ export default definePreset((params?: PresetParams) => {
       [
         new RegExp(`^${selectorName}-(${listTypesRegex})-(.+)$`),
         ([, type, colorName]) => {
-          const typeAlias = typeAliases[type]
-          if (!typeAlias) {
+          const typeColor = typeColors[type]
+          if (!typeColor) {
             return ''
           }
 
@@ -90,12 +89,13 @@ export default definePreset((params?: PresetParams) => {
             return ''
           }
 
-          return availableThemes
+          const classes = availableThemes
             .map((theme) => {
-              const alias = themes[theme].alias || theme
-              return `${alias}:${selectorName}-v-${type}-${colorName}`
+              return `${theme}:${selectorName}-v-${type}-${colorName}-${theme}`
             })
             .join(' ')
+
+          return classes
         },
       ],
     ],
@@ -103,8 +103,8 @@ export default definePreset((params?: PresetParams) => {
       [
         new RegExp(`^${selectorName}-v-(${listTypesRegex})-(.+)-(.+)$`),
         ([, type, colorName, theme]) => {
-          const typeAlias = typeAliases[type]
-          if (!typeAlias) {
+          const typeColor = typeColors[type]
+          if (!typeColor) {
             return {}
           }
 
@@ -114,10 +114,21 @@ export default definePreset((params?: PresetParams) => {
           }
 
           return {
-            [typeAlias]: color,
+            [typeColor]: color,
           }
         },
       ],
     ],
+    // https://unocss.dev/config/variants
+    variants: Object.keys(themes).map((theme) => {
+      const name = themes[theme] || theme
+      return (matcher: string) => {
+        if (!matcher.startsWith(`${name}:`)) return matcher
+        return {
+          matcher: matcher.slice(`${name}:`.length),
+          selector: (s: string) => `.${name} ${s}`,
+        }
+      }
+    }),
   }
 })
