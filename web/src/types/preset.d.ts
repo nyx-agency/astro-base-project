@@ -1,7 +1,6 @@
-// Path: web/src/types/preset.ts
-import type { PresetOptions } from "unocss";
+// Path: web/src/types/preset.d.ts
 
 type PresetParams = {
   selectorName?: string
-  options?: PresetOptions
+  options?: Record<string, any>
 }

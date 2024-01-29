@@ -436,6 +436,7 @@ const colors: ListColor = {
   },
 
   basic: {
+    base: '#000000',
     black: '#000000',
     white: '#FFFFFF',
     transparent: '#FFFFFF00',
@@ -444,47 +445,47 @@ const colors: ListColor = {
 
 const lightPalette: ColorPalette = {
   primary: {
-    base: colors['light-green'].base, // Color primario base
-    on: colors['light-green'].darken['1'], // Color sobre primario
-    container: colors['light-green'].lighten['5'], // Contenedor primario
-    onContainer: colors['light-green'].base, // Color sobre contenedor primario
+    base: colors?.['light-green']?.base, // Color primario base
+    on: colors?.['light-green']?.darken?.['1'] ?? '', // Color sobre primario
+    container: colors?.['light-green']?.lighten?.['5'] ?? '', // Contenedor primario
+    onContainer: colors?.['light-green']?.base ?? '', // Color sobre contenedor primario
   },
   secondary: {
-    base: colors['yellow'].base, // Color secundario base
-    on: colors['yellow'].darken['1'], // Color sobre secundario
-    container: colors['yellow'].lighten['5'], // Contenedor secundario
-    onContainer: colors['yellow'].base, // Color sobre contenedor secundario
+    base: colors?.['yellow']?.base ?? '', // Color secundario base
+    on: colors?.['yellow']?.darken?.['1'] ?? '', // Color sobre secundario
+    container: colors?.['yellow']?.lighten?.['5'] ?? '', // Contenedor secundario
+    onContainer: colors?.['yellow']?.base ?? '', // Color sobre contenedor secundario
   },
   background: {
-    base: colors.grey.lighten['5'], // Fondo base
-    on: colors.grey.darken['1'], // Color sobre fondo
+    base: colors.grey.lighten?.['5'] ?? '', // Fondo base
+    on: colors.grey.darken?.['1'] ?? '', // Color sobre fondo
   },
   surface: {
-    base: colors.grey.lighten['3'], // Superficie base
-    on: colors.grey.darken['2'], // Color sobre superficie
+    base: colors.grey.lighten?.['3'] ?? '', // Superficie base
+    on: colors.grey.darken?.['2'] ?? '', // Color sobre superficie
   },
 }
 
 const darkPalette: ColorPalette = {
   primary: {
-    base: colors['red'].base,
-    on: colors['light-green'].lighten['1'],
-    container: colors['light-green'].darken['4'],
-    onContainer: colors['light-green'].lighten['5'],
+    base: colors?.['red']?.base,
+    on: colors?.['light-green']?.lighten?.['1'] ?? '',
+    container: colors?.['light-green']?.darken?.['4'],
+    onContainer: colors?.['light-green']?.lighten?.['5'],
   },
   secondary: {
-    base: colors['yellow'].base,
-    on: colors['yellow'].lighten['1'],
-    container: colors['yellow'].darken['4'],
-    onContainer: colors['yellow'].lighten['5'],
+    base: colors?.['yellow']?.base,
+    on: colors?.['yellow']?.lighten?.['1'] ?? '',
+    container: colors?.['yellow']?.darken?.['4'],
+    onContainer: colors?.['yellow']?.lighten?.['5'],
   },
   background: {
-    base: colors.grey.darken['4'], // Fondo base para tema oscuro
-    on: colors.grey.lighten['5'], // Color sobre fondo para tema oscuro
+    base: colors.grey.darken?.['4'] ?? '', // Fondo base para tema oscuro
+    on: colors.grey.lighten?.['5'] ?? '', // Color sobre fondo para tema oscuro
   },
   surface: {
-    base: colors.grey.darken['3'], // Superficie base para tema oscuro
-    on: colors.grey.lighten['4'], // Color sobre superficie para tema oscuro
+    base: colors.grey.darken?.['3'] ?? '', // Superficie base para tema oscuro
+    on: colors.grey.lighten?.['4'] ?? '', // Color sobre superficie para tema oscuro
   },
 }
 

@@ -1,13 +1,22 @@
 {
   "extends": "astro/tsconfigs/strict",
   "compilerOptions": {
-    // ... otras opciones ...
-    "baseUrl": ".", // Esto permite definir rutas relativas a la raíz del proyecto
+    "baseUrl": ".",
     "paths": {
       "@/*": ["./src/*"],
-      "@components/*": ["./src/components/*"]
+      "@components/*": ["./src/components/*"],
     },
     "typeRoots": ["./node_modules/@types", "./src/types"],
-    "include": ["./src/**/*", "./src/types/*", "./types/**/*"]
+    "include": ["./src/**/*", "./src/types/*", "./types/**/*"],
+    "exclude": [
+      "node_modules",
+      "dist",
+      "build",
+      "out",
+      "public",
+      "static",
+      "coverage",
+      "cypress",
+    ],
   }
 }

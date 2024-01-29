@@ -1,3 +1,5 @@
+// Path: src/types/color.d.ts
+
 // Definición de los tipos para los colores y sus variantes
 type ColorVariant = {
   '1'?: string
@@ -12,6 +14,9 @@ interface Color {
   lighten?: ColorVariant
   darken?: ColorVariant
   accent?: ColorVariant
+  black?: string
+  white?: string
+  transparent?: string
 }
 
 // Interfaz para el objeto de colores

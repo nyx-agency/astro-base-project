@@ -1,6 +1,7 @@
 // Path: web/src/presets/index.ts
 
-import typography from "./typography";
-import color from './color'
+import typographyFile from './typography'
+import colorFile from './color'
 
-export { typography, color }
+export const typography = typographyFile
+export const color = colorFile

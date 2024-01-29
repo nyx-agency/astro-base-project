@@ -55,7 +55,7 @@ function getColorFromThemes(
 }
 
 // https://unocss.dev/config/presets#presets
-export default definePreset((params: PresetParams) => {
+export default definePreset((params?: PresetParams) => {
   const { selectorName = 'nyx-color2', options = {} } = params || {}
 
   const { themes = {} } = options
