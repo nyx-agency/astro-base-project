@@ -18,7 +18,7 @@
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "@astrojs/svelte": "^5.0.3",
-    "astro": "^4.2.6",
+    "astro": "^4.2.7",
     "svelte": "^4.2.9",
     "typescript": "^5.3.3"
   },
@@ -32,8 +32,8 @@
     "@iconify-json/mdi-light": "^1.1.10",
     "@iconify-json/ph": "^1.1.10",
     "@iconify-json/twemoji": "^1.1.15",
-    "@typescript-eslint/eslint-plugin": "^6.19.1",
-    "@typescript-eslint/parser": "^6.19.1",
+    "@typescript-eslint/eslint-plugin": "^6.20.0",
+    "@typescript-eslint/parser": "^6.20.0",
     "@unocss/preset-uno": "^0.58.4",
     "eslint": "^8.56.0",
     "eslint-config-prettier": "^9.1.0",
