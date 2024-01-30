@@ -15,9 +15,7 @@ export default defineConfig({
   presets: [
     presetAttributify({}),
     presetUno({}),
-    presetMini({
-      dark: 'media',
-    }),
+    presetMini({}),
     presetIcons({
       collections: {
         // https://icon-sets.iconify.design/
