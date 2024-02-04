@@ -1,0 +1,49 @@
+---
+// src/pages/nombre/[nombre].astro
+const nombre = Astro.params.nombre
+const baseURL = import.meta.env.PUBLIC_URL_BASE // Asegúrate de que esta variable esté disponible en el entorno público
+---
+
+<html>
+  <head>
+    <title>Saludo a {nombre}</title>
+  </head>
+  <body>
+    <h1>Saludo a {nombre}!</h1>
+    <div id="saludo"></div>
+    <script type="module">
+      const state = {
+        isFetching: false,
+        data: null,
+        error: null,
+      }
+
+      async function fetchSaludo(nombre) {
+        state.isFetching = true
+        try {
+          // sleep 5 seconds
+
+          const res = await fetch(`${'${baseURL}'}/api/hi/${nombre}`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+          })
+          if (!res.ok) {
+            throw new Error(`Error: ${res.status}`)
+          }
+          const data = await res.json()
+          state.data = data
+          document.getElementById('saludo').textContent = data.message
+        } catch (error) {
+          state.error = error
+          console.error('Fetch error:', error)
+        } finally {
+          state.isFetching = false
+        }
+      }
+
+      fetchSaludo('${nombre}')
+    </script>
+  </body>
+</html>

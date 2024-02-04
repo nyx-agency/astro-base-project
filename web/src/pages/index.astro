@@ -1,13 +1,29 @@
 ---
 // Path: web/src/pages/index.astro
+export const prerender = false;
 
 import Layout from '../layouts/Layout.astro';
 import DarkModeToggle from '../components/DarkModeToggle.svelte';
+
+const baseURL = import.meta.env.URL_BASE
+let data = { mensaje: "Cargando..." };
+try {
+  const res = await fetch(`${baseURL}/api/saludo`);
+  if (res.ok) {
+    data = await res.json();
+  } else {
+    data.mensaje = "Error al cargar datos.";
+  }
+} catch (error) {
+  console.error("Error al realizar la solicitud fetch:", error);
+  data.mensaje = "Error al realizar la solicitud.";
+}
 ---
 
 <Layout>
 	<main>
 		<DarkModeToggle client:visible />
+		<h1>{data.mensaje}</h1>
 		<div
 			class="nyx-color2-text-primary-base"
 		>

@@ -1,0 +1,13 @@
+---
+// src/pages/numero.astro
+export const prerender = false
+
+const baseURL = import.meta.env.URL_BASE
+
+const res = await fetch(
+  `${baseURL}/api/numero?num=${Math.floor(Math.random() * 10)}`
+)
+const { mensaje } = await res.json()
+---
+
+<h1>{mensaje}</h1>

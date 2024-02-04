@@ -4,7 +4,7 @@
 FROM node:20-slim
 
 # Establece el directorio de trabajo en el contenedor
-WORKDIR /usr/src/app
+WORKDIR /web
 
 # Copia los archivos de dependencias del proyecto
 COPY package*.json ./

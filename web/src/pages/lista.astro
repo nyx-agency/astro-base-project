@@ -1,0 +1,20 @@
+---
+// src/pages/lista.astro
+export const prerender = false
+
+const baseURL = import.meta.env.URL_BASE
+const res = await fetch(`${baseURL}/api/datos`)
+const datos = await res.json()
+---
+
+<html>
+  <head>
+    <title>Página de Lista</title>
+  </head>
+  <body>
+    <h1>Lista de Datos</h1>
+    <ul>
+      {datos.map((dato) => <li key={dato.id}>{dato.nombre}</li>)}
+    </ul>
+  </body>
+</html>

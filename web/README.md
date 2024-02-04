@@ -7,3 +7,6 @@
 - [x] Dockerfile and docker-compose.yml.
 - [ ] Git commit.
 - [ ] Git push.
+
+AWS Elastic Beanstalk
+Amazon Elastic Container Registry con Docker en AWS Lambda

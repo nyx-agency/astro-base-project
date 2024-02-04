@@ -12,8 +12,10 @@ volumes:
 services:
   web:
     container_name: astro-base-project_web
-    build: web
     image: web
+    build:
+      context: ./web
+      dockerfile: Dockerfile
     networks:
       - astro-base-project_network
     volumes:

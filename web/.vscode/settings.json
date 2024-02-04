@@ -1,3 +1,10 @@
 {
-  "cSpell.words": ["astrojs", "Attributify", "iconify", "preflights", "unocss"]
+  "cSpell.words": [
+    "astrojs",
+    "Attributify",
+    "fastify",
+    "iconify",
+    "preflights",
+    "unocss"
+  ]
 }

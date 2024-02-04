@@ -1,7 +1,7 @@
 {
   "devDependencies": {
-    "lint-staged": "^15.2.0",
-    "husky": "^8.0.0"
+    "husky": "^8.0.0",
+    "lint-staged": "^15.2.0"
   },
   "lint-staged": {
     "*.{js,svelte,vue,ts}": "npx --yes oxlint@latest --deny-warnings"
@@ -9,5 +9,7 @@
   "scripts": {
     "prepare": "husky install",
     "lint": "npx --yes oxlint@latest --deny-warnings"
+  },
+  "dependencies": {
   }
 }
